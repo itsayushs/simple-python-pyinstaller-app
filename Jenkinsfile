@@ -40,11 +40,7 @@ pipeline {
                        parserName: 'PYLint',
                        pattern   : 'pylint.log'
                                       ]],
-        unstableTotalAll           : '0',
-        usePreviousBuildAsReference: true
+                unstableTotalAll: '0',
+                usePreviousBuildAsReference: true
                   ])
-             }
-
-       }
-    }
-}
+             }       }    }}}
