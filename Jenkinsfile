@@ -36,9 +36,9 @@ pipeline {
             sh 'pylint --disable=W1202 --output-format=parseable --reports=no sources/test_calc.py > pylint.log || echo "pylint exited with $?"'
             sh 'cat pylint.log'
             step([
-             $class                     : 'WarningsPublisher',
-             parserConfigurations       : [[
-                                              parserName: 'PYLint',
+             $class: 'WarningsPublisher',
+             parserConfigurations      : [[
+                                              parserName: 'PyLint',
                                               pattern   : 'pylint.log'
                                       ]],
              unstableTotalAll           : '0',
