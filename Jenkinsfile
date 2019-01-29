@@ -26,5 +26,11 @@ pipeline {
                 }
             }
         }
+
+        stage('Analysis') {
+            steps {
+                recordIssues enabledForFailure: true, aggregatingResults: true, tool: checkStyle(pattern: 'checkstyle-result.xml')
+            }
+            }
+        }
     }
-}
