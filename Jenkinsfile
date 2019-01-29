@@ -29,7 +29,7 @@ pipeline {
     }
     post {
      always {
-      recordIssues enabledForFailure: true, aggregatingResults: true, tools: [pyLint(), checkStyle(pattern: 'checkstyle-result.xml', reportEncoding: 'UTF-8')]
+    recordIssues enabledForFailure: true, aggregatingResults: true, pyLint(): checkStyle(pattern: 'checkstyle-result.xml')
   }
  }
 }
