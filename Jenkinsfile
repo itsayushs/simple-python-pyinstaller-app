@@ -26,10 +26,25 @@ pipeline {
                 }
             }
         }
+        stage('Analizer'){
+            agent {
+                docker {
+                    image 'pylint:latest'
+                }
+            steps {
+              sh 'pylint --disable=W1202 --output-format=parseable --reports=no module > pylint.log || echo "pylint exited with $?")' 
+              sh 'cat render/pylint.log'
+              step([
+                $class : 'WarningsPublisher',
+                parserConfigurations : [[
+                       parserName: 'PYLint',
+                       pattern   : 'pylint.log'
+                                      ]],
+        unstableTotalAll           : '0',
+        usePreviousBuildAsReference: true
+                  ])
+             }
+
+       }
     }
-    post {
-     always {
-      recordIssues enabledForFailure: true, aggregatingResults: true, tool: pyLint()
-  }
- }
 }
