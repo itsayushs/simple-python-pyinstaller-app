@@ -29,7 +29,7 @@ pipeline {
 
         stage('Analysis') {
             steps {
-	recordIssues  enabledForFailure: true, aggregatingResults: true,  tools: [pylint(), checkStyle(pattern: 'checkstyle-result.xml', reportEncoding: 'UTF-8')]	
+		sh 'bin/code-analysis' step([$class: 'WarningsPublisher',parserConfigurations: [[ parserName: 'Pep8', pattern: 'parts/code-analysis/flake8.log']], unstableTotalAll: '0', usePreviousBuildAsReference: true])
             }
             }
         }
