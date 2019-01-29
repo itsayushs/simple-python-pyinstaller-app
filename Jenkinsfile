@@ -38,7 +38,7 @@ pipeline {
             step([
              $class                     : 'WarningsPublisher',
              parserConfigurations       : [[
-                                              parserName: 'pyLint',
+                                              parserName: 'PYLint',
                                               pattern   : 'pylint.log'
                                       ]],
              unstableTotalAll           : '0',
