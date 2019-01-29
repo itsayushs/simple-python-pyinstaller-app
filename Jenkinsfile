@@ -26,21 +26,4 @@ pipeline {
                 }
             }
         }
-
-        stage('Analysis') {
-            steps {
-            timeout(time: 5, unit: 'MINUTES') {
-            sh 'bin/code-analysis'  
-            step([$class: 'WarningsPublisher',
-               parserConfigurations: [[
-               parserName: 'Pep8',
-               pattern: 'parts/code-analysis/flake8.log'
-               ]],
-             unstableTotalAll: '0',
-             usePreviousBuildAsReference: true
-             ])
-            } 
-            }
-            }
-        }
     }
