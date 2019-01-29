@@ -14,7 +14,7 @@ pipeline {
         stage('Test') {
             agent {
                 docker {
-                    image 'pylinttest:mix'
+                    image 'python:pytest'
                 }
             }
             steps {
@@ -29,7 +29,7 @@ pipeline {
         stage('Analysis') {
             agent {
                 docker {
-                    image 'pylinttest:mix'
+                    image 'pylint:latest'
                 }
             }
             steps {
